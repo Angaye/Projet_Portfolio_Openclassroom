@@ -117,6 +117,8 @@ const formulaireUser = document.querySelector(".sign-in-form");
     const stringUser=JSON.stringify(user);
     // Enregistrement des données de l'utilisateur
     window.localStorage.setItem("user",stringUser);
+    // Stockage du token
+    
 
     // Des données de l'utilisateur pour la verification
     const userId ={

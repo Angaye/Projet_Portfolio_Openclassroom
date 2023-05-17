@@ -21,7 +21,7 @@ gallerieElement.appendChild(imageUrlElement);
 gallerieElement.appendChild(titleElement);
  }
  }
-// generationWorks(work); 
+generationWorks(work); 
 
 const boutonAll = document.querySelector('.All');
 boutonAll.addEventListener('click',function(){
@@ -43,9 +43,31 @@ boutonprojet.addEventListener("click",function () {
     document.querySelector('.gallery').innerHTML= "";
     generationWorks(projet);
 });
+const boutonApart =  document.querySelector('.appart')
+boutonApart.addEventListener('click',function(){
+    const appart=work.filter(function(apparts){
+          return apparts.categoryId===2;
+    });
+    console.log(appart);
+    document.querySelector(".gallery").innerHTML= "";
+    generationWorks(appart);
+});
+
+const boutonHotel = document.querySelector('.hotel');
+boutonHotel.addEventListener('click',function(){
+    const hotel=work.filter(function(hotels){
+        return hotels.categoryId===3;
+    });
+    console.log(hotel);
+    document.querySelector(".gallery").innerHTML = "";
+    generationWorks(hotel);
+});
+// Recuperation du token
 const user=window.localStorage.getItem("user");
+// Recuperation du token
+const monToken=window.localStorage.getItem("token");
 // localStorage.setItem('token',JSON.stringify('token'))
-if(user){
+if(user && monToken){
     const barrerLogin =document.querySelector('#login')
     barrerLogin.innerText = "LogOUT"
     barrerLogin.addEventListener('click', function(){
@@ -65,7 +87,7 @@ if(user){
 
     
 }
-
+// premier modal
 let modal= null 
 
 const openModal= function(e) {
@@ -127,7 +149,7 @@ function generationphoto(work){
      }
      }
     generationphoto(work);
-// premier modale
+// Deuxieme modale
 let modale = null;
 const openModale=function(e){
     e.preventDefault()
@@ -180,7 +202,45 @@ function generationphoto1(work){
      }
      }
     generationphoto1(work);
+    // Troisiéme modale
 
+let modal3= null 
+
+const openModal3= function(e) {
+    e.preventDefault();
+    const target3= document.querySelector(e.target3.getAttribute('href')) 
+    target3.style.display= null;
+    target3.removeAttribute('aria-hidden')
+    target3.setAttribute('aria-modal',"true")
+    modal3 = target3
+    modal3.addEventListener('click',closeModal3)
+    modal3.querySelector('.js-close3-modal').addEventListener('click',closeModal3)
+    modal3.querySelector('.js-stop3-modal').addEventListener('click',stopPropagation3)
+}
+
+const closeModal3=  function(e){
+    if(modal3 === null) return
+    e.preventDefault()
+    modal3.style.display="none";
+    modal3.setAttribute('aria-hidden',"true")
+    modal3.removeAttribute('aria-modal')
+    modal3.removeEventListener('click',closeModal3)
+    modal3.querySelector('.js-close3-modal').removeEventListener('click',closeModal3)
+    modal3.querySelector('.js-stop3-modal').removeEventListener('click',stopPropagation3)
+
+    modal3=null
+}
+const stopPropagation3 = function (e){
+    e.stopPropagation3()
+}
+document.querySelectorAll('.js-modal3').forEach(a => {
+    a.addEventListener('click',openModal3)
+});
+window.addEventListener('keydown',function(e){
+    if(e.key === "Escape"){
+        closeModal3(e)
+    }
+})
     // 
     //suppression d'un element
 
@@ -200,7 +260,7 @@ function generationphoto1(work){
   
       console.log(id_supprimer);
   
-      let monToken = localStorage.getItem("token");
+      let monToken =window.localStorage.getItem("token");
   
       let response = fetch(`http://localhost:5678/api/works/${id_supprimer}`,
   
