@@ -72,39 +72,52 @@
 
 			<div class="boutonProjet">
 				<h2>Mes Projets</h2>
-				<div>
-					<a href="#modal1" class="js-modal" style="display:none"><i class="fa-solid fa-pen-to-square"></i>Modifier</a>
+				<div class="bloc_Modals">
+					<a href="#modal1" class="js-modal" style="display:none"><i
+							class="fa-solid fa-pen-to-square"></i>Modifier</a>
 					<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal"
 						style="display: none;">
-						<div class="modal-wrapper js-stop-modal">
+						<div class="modal-wrapper js-stop-modal" id="modal11">
 							<button class="js-close-modal"><i class="fa-sharp fa-solid fa-xmark"></i></button>
 							<h1 id="titlemodal">Gallerie photo</h1>
 							<div class="photo">
 
 							</div>
-							<a href="#modal3" class="js-modal3"><button class="ajouter">Ajouter une photo</button></a>
+							<button class="ajouter">Ajouter une photo</button>
 
 							<div class="supprimer">
 								<p>Supprimer la gallerie</p>
 							</div>
+						</div>
 
-					</aside>
-					<aside id="modal3" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;" >
-						<div class="modal-wrapper js-stop3-modal">
+						<div class="modal-wrapper js-stop-modal" id="modal12" style="display: none;">
 
 							<i class="fa-sharp fa-solid fa-arrow-left"></i>
-							<button class="js-close3-modal"><i class="fa-sharp fa-solid fa-xmark"></i></button>
+							<button class="js-close-modal" id="close_Modal2"><i
+									class="fa-sharp fa-solid fa-xmark"></i></button>
 
 							<h1 id="titlemodal">Ajout photo</h1>
-							<div class="espacePhoto">
-								
-								<i class="fa-thin fa-image"></i>
+							<div class="photEnvoi">
+								<div class="espacePhoto">
 
+									<div><i class="fa-sharp fa-regular fa-image"></i></div>
+									<div class="esp"><button> + Ajouter photo</button></div>
+									<p class="esp">jpg,png:4mo max</p>
+								</div>
+								<div class="info">
 
-		
+									<label for="title" class="label">Title</label>
+									<input type="text" class="labelModal" id="title" name="title">
+									<label for="title" class="label">Catégorie</label>
+									<input type="text" class="labelModal" id="title" name="title">
+
+								</div>
 							</div>
+							
+								<button class="val">Valider</button>
 						</div>
 					</aside>
+
 				</div>
 
 			</div>

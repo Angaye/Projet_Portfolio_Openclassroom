@@ -202,49 +202,10 @@ function generationphoto1(work){
      }
      }
     generationphoto1(work);
-    // Troisiéme modale
 
-let modal3= null 
 
-const openModal3= function(e) {
-    e.preventDefault();
-    const target3= document.querySelector(e.target3.getAttribute('href')) 
-    target3.style.display= null;
-    target3.removeAttribute('aria-hidden')
-    target3.setAttribute('aria-modal',"true")
-    modal3 = target3
-    modal3.addEventListener('click',closeModal3)
-    modal3.querySelector('.js-close3-modal').addEventListener('click',closeModal3)
-    modal3.querySelector('.js-stop3-modal').addEventListener('click',stopPropagation3)
-}
-
-const closeModal3=  function(e){
-    if(modal3 === null) return
-    e.preventDefault()
-    modal3.style.display="none";
-    modal3.setAttribute('aria-hidden',"true")
-    modal3.removeAttribute('aria-modal')
-    modal3.removeEventListener('click',closeModal3)
-    modal3.querySelector('.js-close3-modal').removeEventListener('click',closeModal3)
-    modal3.querySelector('.js-stop3-modal').removeEventListener('click',stopPropagation3)
-
-    modal3=null
-}
-const stopPropagation3 = function (e){
-    e.stopPropagation3()
-}
-document.querySelectorAll('.js-modal3').forEach(a => {
-    a.addEventListener('click',openModal3)
-});
-window.addEventListener('keydown',function(e){
-    if(e.key === "Escape"){
-        closeModal3(e)
-    }
-})
-    // 
-    //suppression d'un element
-
-  let insereIcon = document.querySelectorAll(".fa-trash-can");
+    // Suppression des travaux à partir del'icon supprimé
+let insereIcon = document.querySelectorAll(".fa-trash-can");
 
   console.log(insereIcon);
   
@@ -299,3 +260,33 @@ window.addEventListener('keydown',function(e){
     })
   
   }
+
+//   Affichage du modale pour l'ajout de photo à partir du 
+// bouton ajouter au niveau du modale pour suppression des images
+
+const boutonAjoutPhoto = document.querySelector('.ajouter');
+boutonAjoutPhoto.addEventListener('click',function(e){
+e.preventDefault();
+const boiteModal1 = document.querySelector("#modal11");
+boiteModal1.style.display="none"
+const boiteModal2 = document.querySelector("#modal12");
+boiteModal2.style.display="block";
+})
+const boiteModal2 = document.querySelector("#modal12");
+boiteModal2.addEventListener('click',function(e){
+    e.stopPropagation()
+})
+
+const retourPremierModal= document.querySelector('.fa-arrow-left')
+retourPremierModal.addEventListener('click',function(e){
+e.preventDefault();
+const boiteModal1 = document.querySelector("#modal11");
+boiteModal1.style.display="block"
+const boiteModal2 = document.querySelector("#modal12");
+boiteModal2.style.display="none";
+
+})
+
+const bouton2 = document.querySelectorAll('.js-close-modal').forEach(button=>button.addEventListener('click', closeModal));
+
+
