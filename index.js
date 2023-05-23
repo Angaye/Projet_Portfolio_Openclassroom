@@ -62,31 +62,7 @@ boutonHotel.addEventListener('click',function(){
     document.querySelector(".gallery").innerHTML = "";
     generationWorks(hotel);
 });
-// Recuperation du token
-const user=window.localStorage.getItem("user");
-// Recuperation du token
-const monToken=window.localStorage.getItem("token");
-// localStorage.setItem('token',JSON.stringify('token'))
-if(user && monToken){
-    const barrerLogin =document.querySelector('#login')
-    barrerLogin.innerText = "LogOUT"
-    barrerLogin.addEventListener('click', function(){
-        window.localStorage.removeItem('user');
 
-        console.log('hello')
-    })
-    const barrerBouton =document.querySelector('.boutons')
-    barrerBouton.style.display="none";
-    const afficherModal =document.querySelector('.js-modal')
-    afficherModal.style.display="block";
-    const afficherModale =document.querySelector('.js-modale')
-    afficherModale.style.display="block";
-    const topTop = document.querySelector('.topp')
-     topTop.style.display= "block";   
-    
-
-    
-}
 // premier modal
 let modal= null 
 
@@ -149,38 +125,34 @@ function generationphoto(work){
      }
      }
     generationphoto(work);
-// Deuxieme modale
-let modale = null;
-const openModale=function(e){
-    e.preventDefault()
-    const targete=document.querySelector(e.target.getAttribute('href'))
-    targete.style.display=null
-    targete.removeAttribute('aria-hidden')
-    targete.setAttribute('aria-modal','true')
-    modale=targete
-    modale.addEventListener('click',closemodale)
-    modale.querySelector('.js-modal-close').addEventListener('click',closemodale)
-    modale.querySelector('.js-stop').addEventListener('click',stopPropagatio)
-}
+// Recuperation du token
+const user=window.localStorage.getItem("user");
+console.log(user)
+// Recuperation du token
+const monToken=window.localStorage.getItem("token");
+console.log(monToken)
+// localStorage.setItem('token',JSON.stringify('token'))
+if(user && monToken){
+    const barrerLogin =document.querySelector('#login')
+    barrerLogin.addEventListener('click', function(){
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('user')
+    })
+    barrerLogin.innerText = "LogOUT"
+    const barrerBouton =document.querySelector('.boutons')
+    barrerBouton.style.display="none";
+    document.querySelectorAll('.js-modal').forEach(a=>{
+        a.style.display= 'block'
+        a.addEventListener('click', openModal)
+    })
+    // const afficherModale =document.querySelector('.js-modale')
+    // afficherModale.style.display="block";
+    const topTop = document.querySelector('.topp')
+     topTop.style.display= "block";   
+    
 
-const closemodale= function(e){
-    if(modale===null) return
-    e.preventDefault()
-    modale.style.display='none'
-    modale.setAttribute('aria-hidden','true')
-    modale.removeAttribute('aria-modal')
-    modale.removeEventListener('click',closemodale)
-    modale.querySelector('.js-modal-close').removeEventListener('click',closemodale)
-    modale.querySelector('.js-stop').removeEventListener('click',stopPropagatio)
-    modale=null
+    
 }
-
-const stopPropagatio =  function(e){
-    e.stopPropagation()
-}
-document.querySelectorAll('.js-modale').forEach(a =>{
-    a.addEventListener('click',openModale)
-})
 
 function generationphoto1(work){ 
     for (let i = 0; i < work.length; i++) {
@@ -289,4 +261,62 @@ boiteModal2.style.display="none";
 
 const bouton2 = document.querySelectorAll('.js-close-modal').forEach(button=>button.addEventListener('click', closeModal));
 
+// Code pour ajouter une image dans le formulaire
+const blocForm= document.querySelector('#blocForm')
+let titleAjouter = document.querySelector('#titre').value
+let imageInput = document.querySelector("#imageInput")
+let categoryAjouter = document.querySelector('#Categorie').value
+let inputFile = document.querySelector("#input-file")
+inputFile.onchange = function () {
+    imageInput.src = URL.createObjectURL(inputFile.files[0])
+}
+blocForm.addEventListener('submit', async function (e) {
+    e.preventDefault()
+    let imageInput = document.querySelector("#imageInput")
+    let inputFile = document.querySelector("#input-file")
 
+    inputFile.onchange = function () {
+        imageInput.src = URL.createObjectURL(inputFile.files[0])
+    }
+    // Création d'objets formData  
+
+    var formData = new FormData();
+    let titleAjouter = document.querySelector('#titre').value
+    let categoryAjouter = document.querySelector('#Categorie').value
+
+    formData.append("image", inputFile.files[0]);
+    formData.append("title", titleAjouter);
+    formData.append("category",categoryAjouter);
+
+    const monToken =window.localStorage.getItem('token')
+    const answer = await fetch('http://localhost:5678/api/works/', {
+        method: 'POST',
+        headers: { 'Authorization' : `Bearer ${monToken}` },
+        body: formData
+    })
+    // .then(function(res){
+    //     if (res.ok){
+    //         return res.json()
+    //     }else{
+    //         alert('Erreur dans le formulaire d\'envoi')
+    //     }
+    // })
+
+})
+console.log(titleAjouter)
+console.log(categoryAjouter)
+console.log(inputFile.value)
+
+
+if (titleAjouter !== ""){
+    console.log("bouton vert")
+} else{
+    console.log('Aucun changement')
+}
+
+
+const labelPhoto = document.querySelector("#ajoutPhoto")
+labelPhoto.addEventListener('click', function(e){
+    const imageInput = document.querySelector('#imageInput')
+    imageInput.classList.remove("hidden")
+})

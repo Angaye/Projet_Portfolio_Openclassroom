@@ -40,7 +40,7 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<a href="#modale1" class="js-modale" style="display: none;"><i
+				<a href="#modale1" class="js-modal" style="display: none;"><i
 						class="fa-solid fa-pen-to-square"></i>Modifier</a>
 				<aside id="modale1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal"
 					style="display:none;">
@@ -58,6 +58,8 @@
 				</aside>
 			</figure>
 			<article>
+				<a href="#modal1" class="js-modal" style="display:none"><i
+					class="fa-solid fa-pen-to-square"></i>Modifier</a>
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
 					finale du chantier.</p>
@@ -92,30 +94,33 @@
 
 						<div class="modal-wrapper js-stop-modal" id="modal12" style="display: none;">
 
+							<form action="Submit" method="post" id="blocForm">
 							<i class="fa-sharp fa-solid fa-arrow-left"></i>
-							<button class="js-close-modal" id="close_Modal2"><i
-									class="fa-sharp fa-solid fa-xmark"></i></button>
+							<button class="js-close-modal" id="close_Modal2">
+								<i class="fa-sharp fa-solid fa-xmark"></i></button>
 
 							<h1 id="titlemodal">Ajout photo</h1>
-							<form action="">
-							<div class="photEnvoi">
-								<div class="espacePhoto">
-
-									<div> <i class="fa-sharp fa-regular fa-image"></i></div>
-									<div class="esp"><button> + Ajouter photo</button></div>
-									<p class="esp">jpg,png:4mo max</p>
-								</div>
-								<div class="info">
-
-									<label for="title" class="label">Title</label>
-									<input type="text" class="labelModal" id="title" name="title">
-									<label for="title" class="label">Catégorie</label>
-									<input type="text" class="labelModal" id="title" name="title">
-
-								</div>
+							<div class="blocphoto">
+								<i class="fa-sharp fa-solid fa-image"></i>
+								<img src="" alt="image" class="hidden" id="imageInput">
+								<label for="input-file" class="ajoutPhoto" id="ajoutPhoto">+ Ajout photo</label>
+								<input type="file" id="input-file" name="input-file" accept="image/jpg, image/png" class="hidden">
+								<div class="formats">jpg, png: 4mo max</div>
 							</div>
-							
-								<button class="val">Valider</button>
+							<div class="inputInfo">
+								<label for="titre">Titre</label><br>
+								<input class="text" type="text" name="titre" id="titre" required><br>
+								<label for="Categorie">Categorie</label><br>
+								<select class="inputs-text" name="Categorie" id="Categorie">
+									<option value="vide"></option>
+									<option value="1">Objets</option>
+									<option value="2">Appartements</option>
+									<option value="3">Hôtels et Restaurants</option>
+								</select><br>
+							</div>
+							<div class="boutonValider">
+								<button class="btn-valider" type="submit">Valider</button>
+							</div>
 							</form>
 						</div>
 					</aside>

@@ -352,7 +352,7 @@ article img{
 	left: 5rem;
 
 }
-.esp{
+.ajout-photo{
 	padding: 1rem;
 }
 .fa-image{
@@ -379,5 +379,77 @@ article img{
 	height: 2rem;
 	border: none;
 	border-radius: 1.5rem;
+	color:#306685;
+	background-color: #B9C5CC;
+	border: none;
+	font-size: 2rem;
+	padding: .5rem 2.5rem; 
+}
+/* formulaire */
+ .ajout-photo{
+	background-color: #B9C5CC;
+	font-size: 1.54rem;
+	padding: .5rem 2.5rem;
+	border: none;
+	border-radius: 20px;
+	color:#306685;
+}
+.hidden{
+	display: none;
+}
+.blocphoto{
+	background: #E8F1F7;
+	border-radius: 5px;
+	padding: 2rem;
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: auto;
+	width: 75%;
+	position: relative;
+}
+.blocphoto .ajoutPhoto, .btn-valider{
+	background-color: #B9C5CC;
+	font-size: 1.54rem;
+	padding: .5rem 2.5rem;
+	border: none;
+	border-radius: 20px;
+	color:#306685;
+}
+.inputInfo{
+	width: 85%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	margin-top: 2rem;
+	padding-bottom: 2rem;
+	border-bottom: 2px solid gray
+}
+.text{
+	height: 50px;
+	border: none;
+	box-shadow: 0 0 50px rgb(212, 209, 209);
+}
+.boutonValider{
+	display: grid;
+	place-items: center;
+	margin-top: 2rem;
+}
+.btn-valider{
+	color: #ffffff;
+	background-color:  #A7A7A7;
+	padding: .5rem 5rem;
+}
+#imageInput{
+	height: 100%;
+	width: 45%;
+	z-index: 3;
+	position: absolute;
+}
+.fa-image{
+	font-size: 5rem;
+	color:  #B9C5CC;
 }
 
